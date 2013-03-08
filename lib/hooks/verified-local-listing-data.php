@@ -22,10 +22,8 @@ function VerifiedLocalListingData(&$bean)
             $logger->LogInfo("local listing heads up send to: " . $name . "failed :" . $result->response);
             sugar_die("There is a problem with the CRM business flow, please contact david.mazvovsky@gmail.com asap");
         }
-
         $bean->save();
     }
-
 }
 
 ?>
