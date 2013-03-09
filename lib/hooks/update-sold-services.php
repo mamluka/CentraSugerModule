@@ -62,10 +62,9 @@ function UpdateSoldServicesDates(&$bean)
         $logger->LogInfo("The echosign API returned: " . $result);
 
         if (strlen($result) == 14) {
-            $bean->mobileweb_info_req_sent_c = date("m/d/Y");
+            $bean->echosign_doc_id_c = $result;
             $logger->LogInfo("lead name:" . $name . " was sent a mobile web contract");
         } else {
-            $bean->mobileweb_info_req_sent_c = "";
             $logger->LogInfo("mobile web contract for " . $name . "failed :" . $result);
         }
 
