@@ -25,15 +25,17 @@ function UpdateSoldServicesDates(&$bean)
         $contracts = json_decode(file_get_contents(__DIR__ . "/echosign.json"), true);
         $contract_id = $contracts[$bean->googlelocal_contract_type_c];
 
-        $logger->LogInfo("The selected contract for: " . $bean->googlelocal_contract_type_c . "was: " . $contract_id);
+        $logger->LogInfo("The selected contract for: " . $bean->googlelocal_contract_type_c . " was: " . $contract_id);
 
         $result = $soaClient->get("/echosign/send", array(
             'email' => $email,
             'contractId' => $contract_id
         ));
 
-        if ($result->response != "ERROR") {
-            $bean->echosign_doc_id_c = $result->response;
+        $logger->LogInfo("The echosign API returned: " . $result);
+
+        if (strlen($result) == 14) {
+            $bean->echosign_doc_id_c = $result;
             $logger->LogInfo("lead name:" . $name . " send echosign contract");
         } else {
             $bean->googlelocal_info_req_sent_c = "";
