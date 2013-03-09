@@ -4,7 +4,8 @@ require 'json'
 desc "Install the module using module loader"
 task :install do |task|
 
-  `zip -r package **/(*.php|*.json)`
+  `zip -r package **/*.php`
+  `zip -ru package **/*.json`
 
   @driver = Watir::Browser.new :phantomjs
 
