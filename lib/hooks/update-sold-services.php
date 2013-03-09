@@ -45,18 +45,28 @@ function UpdateSoldServicesDates(&$bean)
         $bean->save();
     }
 
-    if ($bean->mobileweb_check_c == 1 && $bean->mobileweb_sale_date_c == "") {
+    if ($bean->mobileweb_check_c == 1 && $bean->mobileweb_sale_date_c == "" && $bean->googlelocal_check_c == 0) {
         $bean->mobileweb_sale_date_c = date("m/d/Y");
         $bean->mobileweb_sale_rep_c = $current_user->first_name . " " . $current_user->last_name;
 
-        $result = $emailClient->get("/email/mobile-site-client-information-request?email=" . $email . "&name=" . $name . "&customerId=" . $id);
+        $logger->LogInfo("The selected contract for: " . $bean->googlelocal_contract_type_c . " was: " . $contract_id);
 
-        if ($result->response == "OK") {
+        $contracts = json_decode(file_get_contents(__DIR__ . "/echosign.json"), true);
+        $contract_id = $contracts[$bean->googlelocal_contract_type_c];
+
+        $result = $soaClient->get("/echosign/send", array(
+            'email' => $email,
+            'contractId' => $contract_id
+        ));
+
+        $logger->LogInfo("The echosign API returned: " . $result);
+
+        if (strlen($result) == 14) {
             $bean->mobileweb_info_req_sent_c = date("m/d/Y");
-            $logger->LogInfo("lead name:" . $name . " was sent a mobile web details request");
+            $logger->LogInfo("lead name:" . $name . " was sent a mobile web contract");
         } else {
             $bean->mobileweb_info_req_sent_c = "";
-            $logger->LogInfo("request for mobile web details from " . $name . "failed :" . $result->response);
+            $logger->LogInfo("mobile web contract for " . $name . "failed :" . $result);
         }
 
         $bean->save();
