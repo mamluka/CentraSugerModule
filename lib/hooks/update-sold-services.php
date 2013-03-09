@@ -22,7 +22,13 @@ function UpdateSoldServicesDates(&$bean)
         $bean->googlelocal_sale_date_c = date("m/d/Y");
         $bean->googlelocal_sale_rep_c = $current_user->first_name . " " . $current_user->last_name;
 
-        $result = $soaClient->get("/echosign/send?email=" . $email);
+        $contracts = json_decode(file_get_contents(__DIR__ . "/echosign.json"), true);
+        $contract_id = $contracts[$bean->googlelocal_contract_type_c];
+
+        $result = $soaClient->get("/echosign/send", array(
+            'email' => $email,
+            'contractId' => $contract_id
+        ));
 
         if ($result->response != "ERROR") {
             $bean->echosign_doc_id_c = $result->response;
