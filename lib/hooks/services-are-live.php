@@ -16,10 +16,10 @@ function ServicesAreLiveEmails(&$bean)
 
         $result = $api->get("/email/mobile-site-live?email=" . $email);
 
-        if ($result->response == "OK") {
+        if ($result == "OK") {
             $logger->LogInfo("lead name: " . $name . " was sent a mobile site is live");
         } else {
-            $logger->LogInfo("mobile site live email to: " . $name . "failed :" . $result->response);
+            $logger->LogInfo("mobile site live email to: " . $name . "failed :" . $result);
             sugar_die("There is a problem with the CRM business flow, please contact david.mazvovsky@gmail.com asap");
         }
 
@@ -30,10 +30,10 @@ function ServicesAreLiveEmails(&$bean)
 
         $result = $api->get("/email/google-local-listing-live?email=" . $email);
 
-        if ($result->response == "OK") {
+        if ($result == "OK") {
             $logger->LogInfo("lead name: " . $name . " was sent a google local listing email");
         } else {
-            $logger->LogInfo("google local listing email to: " . $name . "failed :" . $result->response);
+            $logger->LogInfo("google local listing email to: " . $name . "failed :" . $result);
             sugar_die("There is a problem with the CRM business flow, please contact david.mazvovsky@gmail.com asap");
         }
 

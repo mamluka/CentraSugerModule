@@ -15,11 +15,11 @@ function VerifiedLocalListingData(&$bean)
 
         $result = $api->get("/email/google-local-listing-heads-up?email=" . $email . '&customerId=' . $bean->id);
 
-        if ($result->response == "OK") {
+        if ($result == "OK") {
             $bean->googlelocal_verified_date_c = date("m/d/Y");
             $logger->LogInfo("lead name:" . $name . " was sent a local listing info heads up email");
         } else {
-            $logger->LogInfo("local listing heads up send to: " . $name . "failed :" . $result->response);
+            $logger->LogInfo("local listing heads up send to: " . $name . "failed :" . $result);
             sugar_die("There is a problem with the CRM business flow, please contact david.mazvovsky@gmail.com asap");
         }
         $bean->save();

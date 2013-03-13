@@ -29,10 +29,10 @@ function HandleNonBillable(&$bean)
 
         $result = $api->get("/email/invalid-url?email=" . $email . "&customerId=" . $id);
 
-        if ($result->response == "OK") {
+        if ($result == "OK") {
             $logger->LogInfo("lead name:" . $name . " was sent a invalid url request");
         } else {
-            $logger->LogInfo("Invalid url request to " . $name . "failed :" . $result->response);
+            $logger->LogInfo("Invalid url request to " . $name . "failed :" . $result);
         }
 
         $bean->save();
@@ -45,10 +45,10 @@ function HandleNonBillable(&$bean)
 
         $result = $api->get("/email/not-the-right-person?email=" . $email);
 
-        if ($result->response == "OK") {
+        if ($result == "OK") {
             $logger->LogInfo("lead name:" . $name . " was sent a not the right person email");
         } else {
-            $logger->LogInfo("not the right person send to" . $name . "failed :" . $result->response);
+            $logger->LogInfo("not the right person send to" . $name . "failed :" . $result);
         }
 
         $bean->save();
