@@ -35,7 +35,7 @@ class CentraHooks
         $logger->LogInfo("stopeed hooks");
         $_SESSION["already_run"] = true;
 
-        $bean->save();
+        //$bean->save();
 
         $logger->LogInfo("saved hooks");
 
