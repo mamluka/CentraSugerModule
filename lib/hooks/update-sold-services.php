@@ -20,7 +20,13 @@ function UpdateSoldServicesDates(&$bean)
         $bean->googlelocal_sale_rep_c = $current_user->first_name . " " . $current_user->last_name;
 
         $contracts = json_decode(file_get_contents(__DIR__ . "/echosign.json"), true);
-        $contract_id = $contracts[$bean->googlelocal_contract_type_c];
+        $contract_type = $bean->googlelocal_contract_type_c;
+
+        if ($contract_type == "") {
+            sugar_die("You must select a contract");
+        }
+
+        $contract_id = $contracts[$contract_type];
 
         $logger->LogInfo("The selected contract for: " . $bean->googlelocal_contract_type_c . " was: " . $contract_id);
 
@@ -47,7 +53,13 @@ function UpdateSoldServicesDates(&$bean)
         $bean->mobileweb_sale_rep_c = $current_user->first_name . " " . $current_user->last_name;
 
         $contracts = json_decode(file_get_contents(__DIR__ . "/echosign.json"), true);
-        $contract_id = $contracts[$bean->mobileweb_contract_type_c];
+        $contract_type = $bean->mobileweb_contract_type_c;
+
+        if ($contract_type == "") {
+            sugar_die("You must select a contract");
+        }
+
+        $contract_id = $contracts[$contract_type];
 
         $logger->LogInfo("The selected contract for: " . $bean->mobileweb_contract_type_c . " was: " . $contract_id);
 
