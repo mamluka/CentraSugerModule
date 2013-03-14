@@ -13,6 +13,10 @@ class CentraHooks
     {
         global $already_run;
 
+        $logger = new KLogger ("centra-logs", KLogger::DEBUG);
+
+        $logger->LogInfo("started the hooks");
+
         if ($already_run)
             return;
 
@@ -25,7 +29,11 @@ class CentraHooks
         ServicesAreLiveEmails($bean);
         VerifiedLocalListingData($bean);
 
+        $logger->LogInfo("stopeed hooks");
         $bean->save();
+
+        $logger->LogInfo("saved hooks");
+
         $already_run = true;
     }
 }
