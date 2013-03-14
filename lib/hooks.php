@@ -33,11 +33,13 @@ class CentraHooks
         VerifiedLocalListingData($bean);
 
         $logger->LogInfo("stopeed hooks");
+        $_SESSION["already_run"] = true;
+
         $bean->save();
 
         $logger->LogInfo("saved hooks");
 
-        $_SESSION["already_run"] = true;
+
     }
 }
 
