@@ -20,8 +20,11 @@ class CentraHooks
 
         $logger->LogInfo("started the hooks");
 
-        if (array_key_exists($_SESSION, "already_run"))
+        if (isset($_SESSION["already_run"])) {
+            $logger->LogInfo("exited");
             return;
+        }
+
 
         SendMobilePreviewEmail($bean);
         UpdateWhoAssignedDeadStatus($bean);
@@ -35,7 +38,7 @@ class CentraHooks
         $logger->LogInfo("stopeed hooks");
         $_SESSION["already_run"] = true;
 
-        //$bean->save();
+        $bean->save();
 
         $logger->LogInfo("saved hooks");
 
