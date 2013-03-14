@@ -6,18 +6,25 @@ class CentraHooks
 {
     function BeforeSave(&$bean, $event, $arguments)
     {
+        $GLOBALS["already_run"] = false;
+
+        if ($GLOBALS["already_run"])
+            return;
+
         ValidateStatuses($bean);
+
+        $GLOBALS["already_run"] = true;
     }
 
     function AfterSave(&$bean, $event, $arguments)
     {
-        global $already_run;
+        $GLOBALS["already_run"] = false;
 
         $logger = new KLogger ("centra-logs", KLogger::DEBUG);
 
         $logger->LogInfo("started the hooks");
 
-        if ($already_run)
+        if ($GLOBALS["already_run"])
             return;
 
         SendMobilePreviewEmail($bean);
@@ -34,7 +41,7 @@ class CentraHooks
 
         $logger->LogInfo("saved hooks");
 
-        $already_run = true;
+        $GLOBALS["already_run"] = true;
     }
 }
 
