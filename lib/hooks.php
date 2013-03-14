@@ -6,12 +6,7 @@ class CentraHooks
 {
     function BeforeSave(&$bean, $event, $arguments)
     {
-        if (array_key_exists($_SESSION, "already_run"))
-            return;
-
         ValidateStatuses($bean);
-
-        $_SESSION["already_run"] = true;
     }
 
     function AfterSave(&$bean, $event, $arguments)
