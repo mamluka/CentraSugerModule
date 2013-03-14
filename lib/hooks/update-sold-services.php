@@ -49,7 +49,7 @@ function UpdateSoldServicesDates(&$bean)
         $contracts = json_decode(file_get_contents(__DIR__ . "/echosign.json"), true);
         $contract_id = $contracts[$bean->mobileweb_contract_type_c];
 
-        $logger->LogInfo("The selected contract for: " . $bean->googlelocal_contract_type_c . " was: " . $contract_id);
+        $logger->LogInfo("The selected contract for: " . $bean->mobileweb_contract_type_c . " was: " . $contract_id);
 
         $result = $soaClient->get("/echosign/send", array(
             'email' => $email,
