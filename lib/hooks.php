@@ -6,8 +6,6 @@ class CentraHooks
 {
     function BeforeSave(&$bean, $event, $arguments)
     {
-        $GLOBALS["already_run"] = false;
-
         if ($GLOBALS["already_run"])
             return;
 
@@ -18,8 +16,6 @@ class CentraHooks
 
     function AfterSave(&$bean, $event, $arguments)
     {
-        $GLOBALS["already_run"] = false;
-
         $logger = new KLogger ("centra-logs", KLogger::DEBUG);
 
         $logger->LogInfo("started the hooks");
