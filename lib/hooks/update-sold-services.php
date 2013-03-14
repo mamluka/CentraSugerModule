@@ -5,9 +5,6 @@ function UpdateSoldServicesDates(&$bean)
 {
     global $current_user;
 
-    $apiFactory = new EmailRestClient();
-    $emailClient = $apiFactory->Get();
-
     $soaFactory = new SoaRestClient();
     $soaClient = $soaFactory->Get();
 
@@ -49,10 +46,10 @@ function UpdateSoldServicesDates(&$bean)
         $bean->mobileweb_sale_date_c = date("m/d/Y");
         $bean->mobileweb_sale_rep_c = $current_user->first_name . " " . $current_user->last_name;
 
-        $logger->LogInfo("The selected contract for: " . $bean->googlelocal_contract_type_c . " was: " . $contract_id);
-
         $contracts = json_decode(file_get_contents(__DIR__ . "/echosign.json"), true);
         $contract_id = $contracts[$bean->mobileweb_contract_type_c];
+
+        $logger->LogInfo("The selected contract for: " . $bean->googlelocal_contract_type_c . " was: " . $contract_id);
 
         $result = $soaClient->get("/echosign/send", array(
             'email' => $email,
