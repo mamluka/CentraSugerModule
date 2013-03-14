@@ -6,7 +6,7 @@ class CentraHooks
 {
     function BeforeSave(&$bean, $event, $arguments)
     {
-        if ($GLOBALS["already_run"])
+        if (array_key_exists($GLOBALS, "already_run"))
             return;
 
         ValidateStatuses($bean);
@@ -20,7 +20,7 @@ class CentraHooks
 
         $logger->LogInfo("started the hooks");
 
-        if ($GLOBALS["already_run"])
+        if (array_key_exists($GLOBALS, "already_run"))
             return;
 
         SendMobilePreviewEmail($bean);
