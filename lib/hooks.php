@@ -11,6 +11,11 @@ class CentraHooks
 
     function AfterSave(&$bean, $event, $arguments)
     {
+        global $already_run;
+
+        if ($already_run)
+            return;
+
         SendMobilePreviewEmail($bean);
         UpdateWhoAssignedDeadStatus($bean);
         ClientStatusChange($bean);
@@ -19,6 +24,9 @@ class CentraHooks
         HandleNonBillable($bean);
         ServicesAreLiveEmails($bean);
         VerifiedLocalListingData($bean);
+
+        $bean->save();
+        $already_run = true;
     }
 }
 
