@@ -6,12 +6,12 @@ class CentraHooks
 {
     function BeforeSave(&$bean, $event, $arguments)
     {
-        if (array_key_exists($GLOBALS, "already_run"))
+        if (array_key_exists($_SESSION, "already_run"))
             return;
 
         ValidateStatuses($bean);
 
-        $GLOBALS["already_run"] = true;
+        $_SESSION["already_run"] = true;
     }
 
     function AfterSave(&$bean, $event, $arguments)
@@ -20,7 +20,7 @@ class CentraHooks
 
         $logger->LogInfo("started the hooks");
 
-        if (array_key_exists($GLOBALS, "already_run"))
+        if (array_key_exists($_SESSION, "already_run"))
             return;
 
         SendMobilePreviewEmail($bean);
@@ -37,7 +37,7 @@ class CentraHooks
 
         $logger->LogInfo("saved hooks");
 
-        $GLOBALS["already_run"] = true;
+        $_SESSION["already_run"] = true;
     }
 }
 
