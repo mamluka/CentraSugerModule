@@ -35,7 +35,7 @@ function HandleNonBillable(&$bean)
             $logger->LogInfo("Invalid url request to " . $name . "failed :" . $result);
         }
 
-        $bean->save();
+
     }
 
     if ($bean->not_billable_c == 1 && $bean->non_billable_reason_c == "not_business_owner" && $bean->not_billable_assigner_c == "") {
@@ -51,7 +51,7 @@ function HandleNonBillable(&$bean)
             $logger->LogInfo("not the right person send to" . $name . "failed :" . $result);
         }
 
-        $bean->save();
+
     }
 
     if ($bean->not_billable_c == 1 && $bean->non_billable_reason_c == "not_interested" && $bean->not_billable_assigner_c == "") {
@@ -59,7 +59,7 @@ function HandleNonBillable(&$bean)
         $bean->status = "Dead";
         $bean->not_billable_assigner_c = $current_user->first_name . " " . $current_user->last_name;
 
-        $bean->save();
+
     }
 
     if ($bean->not_billable_c == 1 && $bean->non_billable_reason_c == "invalid_email" && $bean->not_billable_assigner_c == "") {
@@ -67,7 +67,7 @@ function HandleNonBillable(&$bean)
         $bean->status = "pitstop";
         $bean->not_billable_assigner_c = $current_user->first_name . " " . $current_user->last_name;
 
-        $bean->save();
+
     }
 }
 

@@ -23,7 +23,7 @@ function ServicesAreLiveEmails(&$bean)
             sugar_die("There is a problem with the CRM business flow, please contact david.mazvovsky@gmail.com asap");
         }
 
-        $bean->save();
+
     }
 
     if ($bean->googlelocal_live_c == 1 && $bean->googlelocal_check_c == 1) {
@@ -37,7 +37,7 @@ function ServicesAreLiveEmails(&$bean)
             sugar_die("There is a problem with the CRM business flow, please contact david.mazvovsky@gmail.com asap");
         }
 
-        $bean->save();
+
     }
 }
 

@@ -32,7 +32,7 @@ function SendMobilePreviewEmail(&$bean)
             $logger->LogInfo("Preview url send failed");
         }
 
-        $bean->save();
+
     }
 }
 

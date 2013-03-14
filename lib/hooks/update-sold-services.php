@@ -42,7 +42,7 @@ function UpdateSoldServicesDates(&$bean)
             $logger->LogInfo("sending echosign for google listing to " . $name . "failed");
         }
 
-        $bean->save();
+
     }
 
     if ($bean->mobileweb_check_c == 1 && $bean->mobileweb_sale_date_c == "" && $bean->googlelocal_check_c == 0) {
@@ -68,13 +68,13 @@ function UpdateSoldServicesDates(&$bean)
             $logger->LogInfo("mobile web contract for " . $name . "failed :" . $result);
         }
 
-        $bean->save();
+
     }
 
     if ($bean->merch_check_c == 1 && $bean->marchent_sale_date_c == "") {
         $bean->marchent_sale_date_c = date("m/d/Y");
         $bean->marchent_sale_rep_c = $current_user->first_name . " " . $current_user->last_name;
-        $bean->save();
+
     }
 }
 
