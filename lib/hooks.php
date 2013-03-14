@@ -11,15 +11,9 @@ class CentraHooks
 
     function AfterSave(&$bean, $event, $arguments)
     {
-        $logger = new KLogger ("centra-logs", KLogger::DEBUG);
-
-        $logger->LogInfo("started the hooks");
-
         if (isset($_SESSION["already_run"])) {
-            $logger->LogInfo("exited");
             return;
         }
-
 
         SendMobilePreviewEmail($bean);
         UpdateWhoAssignedDeadStatus($bean);
@@ -30,14 +24,9 @@ class CentraHooks
         ServicesAreLiveEmails($bean);
         VerifiedLocalListingData($bean);
 
-        $logger->LogInfo("stopeed hooks");
         $_SESSION["already_run"] = true;
 
         $bean->save();
-
-        $logger->LogInfo("saved hooks");
-
-
     }
 }
 
