@@ -12,6 +12,7 @@ class CentraHooks
     function AfterSave(&$bean, $event, $arguments)
     {
         if (isset($_SESSION["already_run"])) {
+            $_SESSION["already_run"] = false;
             return;
         }
 
