@@ -17,6 +17,9 @@ function ServicesAreLiveEmails(&$bean)
         $result = $api->get("/email/mobile-site-live?email=" . $email);
 
         if ($result == "OK") {
+            $bean->googlelocal_live_assign_name_c = current_user();
+            $bean->googlelocal_live_assign_date_c = crm_date();
+
             $logger->LogInfo("lead name: " . $name . " was sent a mobile site is live");
         } else {
             $logger->LogInfo("mobile site live email to: " . $name . "failed :" . $result);
@@ -36,8 +39,6 @@ function ServicesAreLiveEmails(&$bean)
             $logger->LogInfo("google local listing email to: " . $name . "failed :" . $result);
             sugar_die("There is a problem with the CRM business flow, please contact david.mazvovsky@gmail.com asap");
         }
-
-
     }
 }
 
