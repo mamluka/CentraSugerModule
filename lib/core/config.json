@@ -1,4 +1,4 @@
 {
     "CentraAppsApiBaseUrl":"http://apps.centracorporation.com/api",
-    "SoaApiBaseUrl":"http://soa.centracorporation.com"
+    "SoaApiBaseUrl":"http://soa.centracorporation.com/api"
 }
