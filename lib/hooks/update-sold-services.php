@@ -42,7 +42,7 @@ function UpdateSoldServicesDates(&$bean)
             $bean->echosign_doc_id_c = $result;
             $logger->LogInfo("lead name:" . $name . " send echosign contract");
 
-            $notes->AddNote($id, "Google local listing was sold by " . $current_user());
+            $notes->AddNote($id, "Google local listing was sold by " . current_user());
         } else {
             $bean->googlelocal_info_req_sent_c = "";
             $logger->LogInfo("sending echosign for google listing to " . $name . "failed");
@@ -77,7 +77,7 @@ function UpdateSoldServicesDates(&$bean)
             $bean->echosign_doc_id_c = $result;
             $logger->LogInfo("lead name:" . $name . " was sent a mobile web contract");
 
-            $notes->AddNote($id, "Mobile web was sold by " . $current_user());
+            $notes->AddNote($id, "Mobile web was sold by " . current_user());
         } else {
             $logger->LogInfo("mobile web contract for " . $name . "failed :" . $result);
         }
