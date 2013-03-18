@@ -10,6 +10,7 @@ function UpdateSoldServicesDates(&$bean)
 
     $logger = new KLogger ("centra-logs", KLogger::DEBUG);
 
+    $notes = new NotesClient();
 
     $email = $bean->email1;
     $id = $bean->id;
@@ -40,6 +41,8 @@ function UpdateSoldServicesDates(&$bean)
         if (strlen($result) == 14) {
             $bean->echosign_doc_id_c = $result;
             $logger->LogInfo("lead name:" . $name . " send echosign contract");
+
+            $notes->AddNote($id, "Google local listing was sold by " . $current_user());
         } else {
             $bean->googlelocal_info_req_sent_c = "";
             $logger->LogInfo("sending echosign for google listing to " . $name . "failed");
@@ -73,6 +76,8 @@ function UpdateSoldServicesDates(&$bean)
         if (strlen($result) == 14) {
             $bean->echosign_doc_id_c = $result;
             $logger->LogInfo("lead name:" . $name . " was sent a mobile web contract");
+
+            $notes->AddNote($id, "Mobile web was sold by " . $current_user());
         } else {
             $logger->LogInfo("mobile web contract for " . $name . "failed :" . $result);
         }

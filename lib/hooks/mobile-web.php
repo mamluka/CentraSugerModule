@@ -6,6 +6,8 @@ function SendMobilePreviewEmail(&$bean)
     $apiFactory = new EmailRestClient();
     $api = $apiFactory->Get();
 
+    $notes = new NotesClient();
+
     $logger = new KLogger ("centra-logs", KLogger::DEBUG);
 
     if ($bean->mobile_preview_email_sent_c == "" && $bean->prev_url_c != "http://" && $bean->prev_url_c != "" && $bean->status == "New" && $bean->email1 != "") {
@@ -26,6 +28,8 @@ function SendMobilePreviewEmail(&$bean)
         if ($result == "OK") {
             $bean->mobile_preview_email_sent_c = date("m/d/Y");
             $bean->status = "Assigned";
+
+            $notes->AddNote($bean->id, "Site preview was sent to " . $email);
             $logger->LogInfo("Preview url send successfully");
         } else {
             $bean->mobile_preview_email_sent_c = "";

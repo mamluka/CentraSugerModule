@@ -10,6 +10,8 @@ function ServicesAreLiveEmails(&$bean)
     $apiFactory = new EmailRestClient();
     $api = $apiFactory->Get();
 
+    $notes = new NotesClient();
+
     $name = $bean->first_name;
 
     if ($bean->mobileweb_live_c == 1 && $bean->mobileweb_check_c == 1) {
@@ -18,6 +20,8 @@ function ServicesAreLiveEmails(&$bean)
 
         if ($result == "OK") {
             $logger->LogInfo("lead name: " . $name . " was sent a mobile site is live");
+
+            $notes->AddNote($bean->id, "Mobile web was set to live by " . current_user());
         } else {
             $logger->LogInfo("mobile site live email to: " . $name . "failed :" . $result);
             sugar_die("There is a problem with the CRM business flow, please contact david.mazvovsky@gmail.com asap");
@@ -33,6 +37,8 @@ function ServicesAreLiveEmails(&$bean)
             $bean->googlelocal_live_assign_date_c = crm_date();
 
             $logger->LogInfo("lead name: " . $name . " was sent a google local listing email");
+
+            $notes->AddNote($bean->id, "Google local listing is set live by " . current_user());
         } else {
             $logger->LogInfo("google local listing email to: " . $name . "failed :" . $result);
             sugar_die("There is a problem with the CRM business flow, please contact david.mazvovsky@gmail.com asap");

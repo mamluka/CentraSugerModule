@@ -7,6 +7,8 @@ function HandleNonBillable(&$bean)
     $apiFactory = new EmailRestClient();
     $api = $apiFactory->Get();
 
+    $notes = new NotesClient();
+
     $logger = new KLogger ("centra-logs", KLogger::DEBUG);
 
     if ($bean->not_billable_c == 1 && $bean->non_billable_reason_c == "") {
@@ -31,6 +33,8 @@ function HandleNonBillable(&$bean)
 
         if ($result == "OK") {
             $logger->LogInfo("lead name:" . $name . " was sent a invalid url request");
+
+            $notes->AddNote($id, "Moved to pit stop because of invalid url, invalid url email was sent " . $email);
         } else {
             $logger->LogInfo("Invalid url request to " . $name . "failed :" . $result);
         }
@@ -47,6 +51,8 @@ function HandleNonBillable(&$bean)
 
         if ($result == "OK") {
             $logger->LogInfo("lead name:" . $name . " was sent a not the right person email");
+
+            $notes->AddNote($id, "Moved to dead because we contacted not business owner, email sent to " . $email);
         } else {
             $logger->LogInfo("not the right person send to" . $name . "failed :" . $result);
         }
@@ -59,6 +65,8 @@ function HandleNonBillable(&$bean)
         $bean->status = "Dead";
         $bean->not_billable_assigner_c = $current_user->first_name . " " . $current_user->last_name;
 
+        $notes->AddNote($id, "Moved to dead status because lead was not interested");
+
 
     }
 
@@ -67,6 +75,7 @@ function HandleNonBillable(&$bean)
         $bean->status = "pitstop";
         $bean->not_billable_assigner_c = $current_user->first_name . " " . $current_user->last_name;
 
+        $notes->AddNote($id, "Moved to pit stop because has invalid email");
 
     }
 }
