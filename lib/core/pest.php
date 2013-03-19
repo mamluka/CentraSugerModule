@@ -63,13 +63,20 @@ class Pest
 
     public function get($url, $data = NULL)
     {
+        $logger = new KLogger ("centra-logs", KLogger::DEBUG);
+
         if ($data)
             $url = $url . "?" . http_build_query($data);
 
+        $logger->LogInfo("starting send");
+
         $curl = $this->prepRequest($this->curl_opts, $url);
+        $logger->LogInfo("doing request");
         $body = $this->doRequest($curl);
+        $logger->LogInfo("processong body");
 
         $body = $this->processBody($body);
+        $logger->LogInfo("finished");
 
         return $body;
     }
