@@ -14,7 +14,7 @@ class CentraHooks
     {
         $logger = new KLogger ("centra-logs", KLogger::DEBUG);
 
-        if (isset($_SESSION["already_run"]) && $_SESSION["already_run"] = true) {
+        if (isset($_SESSION["already_run"]) && $_SESSION["already_run"] == true) {
             $logger->LogInfo("==========Hooks exited=================");
             $_SESSION["already_run"] = false;
             return;
