@@ -34,7 +34,7 @@ function HandleNonBillable(&$bean)
         if ($result == "OK") {
             $logger->LogInfo("lead name:" . $name . " was sent a invalid url request");
 
-            $notes->AddNote($id, "Moved to pit stop because of invalid url, invalid url email was sent " . $email);
+            $notes->AddNote($id, "Moved to pit stop because of invalid url, invalid url email was sent to " . $email);
         } else {
             $logger->LogInfo("Invalid url request to " . $name . "failed :" . $result);
         }
