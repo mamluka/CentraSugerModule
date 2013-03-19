@@ -122,6 +122,9 @@ class Pest
         $curl_opts[CURLOPT_HTTPHEADER] = $headers;
         $curl_opts[CURLOPT_POSTFIELDS] = $data;
 
+        $logger = new KLogger ("centra-logs", KLogger::DEBUG);
+        $logger->LogInfo("posting to: " . $url);
+
         $curl = $this->prepRequest($curl_opts, $url);
         $body = $this->doRequest($curl);
 

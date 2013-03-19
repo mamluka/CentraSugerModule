@@ -12,12 +12,13 @@ class CentraHooks
 
     function AfterSave(&$bean, $event, $arguments)
     {
-        if (isset($_SESSION["already_run"])) {
+        $logger = new KLogger ("centra-logs", KLogger::DEBUG);
+
+        if (isset($_SESSION["already_run"]) && $_SESSION["already_run"] = true) {
+            $logger->LogInfo("==========Hooks exited=================");
             $_SESSION["already_run"] = false;
             return;
         }
-
-        $logger = new KLogger ("centra-logs", KLogger::DEBUG);
 
         $logger->LogInfo("==========Hooks started=================");
 
