@@ -1,6 +1,7 @@
 <?php
 
 require_once(__DIR__ . '/hooks/include-all-hooks.php');
+require_once(__DIR__ . '/core/core.php');
 
 class CentraHooks
 {
@@ -16,6 +17,10 @@ class CentraHooks
             return;
         }
 
+        $logger = new KLogger ("centra-logs", KLogger::DEBUG);
+
+        $logger->LogInfo("==========Hooks started=================");
+
         SendMobilePreviewEmail($bean);
         UpdateWhoAssignedDeadStatus($bean);
         ClientStatusChange($bean);
@@ -28,6 +33,8 @@ class CentraHooks
         $_SESSION["already_run"] = true;
 
         $bean->save();
+
+        $logger->LogInfo("==========Hooks ended=================");
     }
 }
 
