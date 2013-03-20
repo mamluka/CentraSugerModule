@@ -19,6 +19,7 @@ function UpdateSoldServicesDates(&$bean)
     if ($bean->googlelocal_check_c == 1 && $bean->googlelocal_sale_date_c == "") {
         $bean->googlelocal_sale_date_c = date("m/d/Y");
         $bean->googlelocal_sale_rep_c = $current_user->first_name . " " . $current_user->last_name;
+        $bean->status = "client";
 
         $contracts = json_decode(file_get_contents(__DIR__ . "/echosign.json"), true);
         $contract_type = $bean->googlelocal_contract_type_c;
@@ -54,6 +55,7 @@ function UpdateSoldServicesDates(&$bean)
     if ($bean->mobileweb_check_c == 1 && $bean->mobileweb_sale_date_c == "" && $bean->googlelocal_check_c == 0) {
         $bean->mobileweb_sale_date_c = date("m/d/Y");
         $bean->mobileweb_sale_rep_c = $current_user->first_name . " " . $current_user->last_name;
+        $bean->status = "client";
 
         $contracts = json_decode(file_get_contents(__DIR__ . "/echosign.json"), true);
         $contract_type = $bean->mobileweb_contract_type_c;
@@ -88,6 +90,7 @@ function UpdateSoldServicesDates(&$bean)
     if ($bean->merch_check_c == 1 && $bean->marchent_sale_date_c == "") {
         $bean->marchent_sale_date_c = date("m/d/Y");
         $bean->marchent_sale_rep_c = $current_user->first_name . " " . $current_user->last_name;
+        $bean->status = "client";
 
     }
 }

@@ -63,20 +63,14 @@ class Pest
 
     public function get($url, $data = NULL)
     {
-        $logger = new KLogger ("centra-logs", KLogger::DEBUG);
+
 
         if ($data)
             $url = $url . "?" . http_build_query($data);
 
-        $logger->LogInfo("starting send");
-
         $curl = $this->prepRequest($this->curl_opts, $url);
-        $logger->LogInfo("doing request");
         $body = $this->doRequest($curl);
-        $logger->LogInfo("processong body");
-
         $body = $this->processBody($body);
-        $logger->LogInfo("finished");
 
         return $body;
     }
@@ -122,13 +116,9 @@ class Pest
         $curl_opts[CURLOPT_HTTPHEADER] = $headers;
         $curl_opts[CURLOPT_POSTFIELDS] = $data;
 
-        $logger = new KLogger ("centra-logs", KLogger::DEBUG);
-
         $curl = $this->prepRequest($curl_opts, $url);
-
-        $logger->LogInfo("curl is: " . $url);
-
         $body = $this->doRequest($curl);
+
         $body = $this->processBody($body);
 
         return $body;
@@ -229,6 +219,7 @@ class Pest
         if (strncmp($url, $this->base_url, strlen($this->base_url)) != 0) {
             $url = rtrim($this->base_url, '/') . '/' . ltrim($url, '/');
         }
+
         $curl = curl_init($url);
 
         foreach ($opts as $opt => $val)
