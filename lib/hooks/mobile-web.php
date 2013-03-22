@@ -26,7 +26,7 @@ function SendMobilePreviewEmail(&$bean)
         $logger->LogInfo("response was " . $result);
 
         if ($result == "OK") {
-            $bean->mobile_preview_email_sent_c = date("m/d/Y");
+            $bean->mobile_preview_email_sent_c = crm_date();
             $bean->status = "Assigned";
 
             $notes->AddNote($bean->id, "Site preview was sent to " . $email);

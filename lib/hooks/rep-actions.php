@@ -8,7 +8,7 @@ function UpdateWhoAssignedDeadStatus(&$bean)
 
     if ($bean->status == "Dead" && $bean->dead_status_assigner_c == "") {
         $bean->dead_status_assigner_c = $current_user->first_name . " " . $current_user->last_name;
-        $bean->dead_status_assigned_date_c = date('Y-m-d H:i:s');
+        $bean->dead_status_assigned_date_c = crm_date();
 
         $noteClient->AddNote($bean->id, "Dead status assigned by " . current_user());
 
@@ -22,7 +22,7 @@ function ClientStatusChange(&$bean)
 
     if ($bean->status == "client" && $bean->rep_client_status_changed_c == "") {
         $bean->rep_client_status_changed_c = $current_user->first_name . " " . $current_user->last_name;
-        $bean->client_status_change_date_c = date("m/d/Y");
+        $bean->client_status_change_date_c = crm_date();
 
         $noteClient->AddNote($bean->id, "Client status was assigned by " . current_user());
 

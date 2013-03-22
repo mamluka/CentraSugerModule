@@ -17,7 +17,7 @@ function UpdateSoldServicesDates(&$bean)
     $name = $bean->first_name;
 
     if ($bean->googlelocal_check_c == 1 && $bean->googlelocal_sale_date_c == "") {
-        $bean->googlelocal_sale_date_c = date("m/d/Y");
+        $bean->googlelocal_sale_date_c = crm_date();
         $bean->googlelocal_sale_rep_c = $current_user->first_name . " " . $current_user->last_name;
         $bean->status = "client";
 
@@ -53,7 +53,7 @@ function UpdateSoldServicesDates(&$bean)
     }
 
     if ($bean->mobileweb_check_c == 1 && $bean->mobileweb_sale_date_c == "" && $bean->googlelocal_check_c == 0) {
-        $bean->mobileweb_sale_date_c = date("m/d/Y");
+        $bean->mobileweb_sale_date_c = crm_date();
         $bean->mobileweb_sale_rep_c = $current_user->first_name . " " . $current_user->last_name;
         $bean->status = "client";
 
@@ -88,7 +88,7 @@ function UpdateSoldServicesDates(&$bean)
     }
 
     if ($bean->merch_check_c == 1 && $bean->marchent_sale_date_c == "") {
-        $bean->marchent_sale_date_c = date("m/d/Y");
+        $bean->marchent_sale_date_c = crm_date();
         $bean->marchent_sale_rep_c = $current_user->first_name . " " . $current_user->last_name;
         $bean->status = "client";
 

@@ -25,7 +25,7 @@ function HandleNonBillable(&$bean)
     $name = $bean->first_name;
 
     if ($bean->not_billable_c == 1 && $bean->non_billable_reason_c == "invalid_url" && $bean->not_billable_assigner_c == "") {
-        $bean->not_billable_assign_date_c = date("m/d/Y");
+        $bean->not_billable_assign_date_c = crm_date();
         $bean->status = "pitstop";
         $bean->not_billable_assigner_c = $current_user->first_name . " " . $current_user->last_name;
 
@@ -43,7 +43,7 @@ function HandleNonBillable(&$bean)
     }
 
     if ($bean->not_billable_c == 1 && $bean->non_billable_reason_c == "not_business_owner" && $bean->not_billable_assigner_c == "") {
-        $bean->not_billable_assign_date_c = date("m/d/Y");
+        $bean->not_billable_assign_date_c = crm_date();
         $bean->not_billable_assigner_c = $current_user->first_name . " " . $current_user->last_name;
         $bean->status = "Dead";
 
@@ -61,7 +61,7 @@ function HandleNonBillable(&$bean)
     }
 
     if ($bean->not_billable_c == 1 && $bean->non_billable_reason_c == "not_interested" && $bean->not_billable_assigner_c == "") {
-        $bean->not_billable_assign_date_c = date("m/d/Y");
+        $bean->not_billable_assign_date_c = crm_date();
         $bean->status = "Dead";
         $bean->not_billable_assigner_c = $current_user->first_name . " " . $current_user->last_name;
 
@@ -71,7 +71,7 @@ function HandleNonBillable(&$bean)
     }
 
     if ($bean->not_billable_c == 1 && $bean->non_billable_reason_c == "invalid_email" && $bean->not_billable_assigner_c == "") {
-        $bean->not_billable_assign_date_c = date("m/d/Y");
+        $bean->not_billable_assign_date_c = crm_date();
         $bean->status = "pitstop";
         $bean->not_billable_assigner_c = $current_user->first_name . " " . $current_user->last_name;
 

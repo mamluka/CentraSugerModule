@@ -18,7 +18,7 @@ function VerifiedLocalListingData(&$bean)
         $result = $api->get("/email/google-local-listing-heads-up?email=" . $email . '&customerId=' . $bean->id);
 
         if ($result == "OK") {
-            $bean->googlelocal_verified_date_c = date("m/d/Y");
+            $bean->googlelocal_verified_date_c = crm_date();
             $logger->LogInfo("lead name:" . $name . " was sent a local listing info heads up email");
 
             $notes->AddNote($bean->id, "Google local listing details were verified");
