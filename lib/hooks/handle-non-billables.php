@@ -4,8 +4,8 @@ require_once(__DIR__ . '/../core/core.php');
 function HandleNonBillable(&$bean)
 {
 
-    $apiFactory = new EmailRestClient();
-    $api = $apiFactory->Get();
+    $soaFactory = new SoaRestClient();
+    $soa = $soaFactory->Get();
 
     $notes = new NotesClient();
 
@@ -29,7 +29,10 @@ function HandleNonBillable(&$bean)
         $bean->status = "pitstop";
         $bean->not_billable_assigner_c = $current_user->first_name . " " . $current_user->last_name;
 
-        $result = $api->get("/email/invalid-url?email=" . $email . "&customerId=" . $id);
+        $result = $soa->get("/emails/non-billable/invalid-url", array(
+            "email" => $email,
+            "customerId" => $id
+        ));
 
         if ($result == "OK") {
             $logger->LogInfo("lead name:" . $name . " was sent a invalid url request");
@@ -47,7 +50,9 @@ function HandleNonBillable(&$bean)
         $bean->not_billable_assigner_c = $current_user->first_name . " " . $current_user->last_name;
         $bean->status = "Dead";
 
-        $result = $api->get("/email/not-the-right-person?email=" . $email);
+        $result = $api->get("/emails/non-billable/not-the-right-person", array(
+            "email" => $email
+        ));
 
         if ($result == "OK") {
             $logger->LogInfo("lead name:" . $name . " was sent a not the right person email");

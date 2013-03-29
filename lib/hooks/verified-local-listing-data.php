@@ -15,7 +15,10 @@ function VerifiedLocalListingData(&$bean)
 
     if ($bean->googlelocal_verified_c == 1 && $bean->googlelocal_check_c == 1 && $bean->googlelocal_verified_date_c == "") {
 
-        $result = $api->get("/email/google-local-listing-heads-up?email=" . $email . '&customerId=' . $bean->id);
+        $result = $api->get("/emails/google-local-listing/google-local-listing-heads-up", array(
+            "email" => $email,
+            "customerId" => $bean->id
+        ));
 
         if ($result == "OK") {
             $bean->googlelocal_verified_date_c = crm_date();
@@ -26,7 +29,6 @@ function VerifiedLocalListingData(&$bean)
             $logger->LogInfo("local listing heads up send to: " . $name . "failed :" . $result);
             sugar_die("There is a problem with the CRM business flow, please contact david.mazvovsky@gmail.com asap");
         }
-
     }
 }
 

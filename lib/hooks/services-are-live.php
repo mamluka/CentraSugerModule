@@ -16,7 +16,9 @@ function ServicesAreLiveEmails(&$bean)
 
     if ($bean->mobileweb_live_c == 1 && $bean->mobileweb_check_c == 1) {
 
-        $result = $api->get("/email/mobile-site-live?email=" . $email);
+        $result = $api->get("/emails/mobile-web/mobile-web-live", array(
+            "email" => $email
+        ));
 
         if ($result == "OK") {
             $logger->LogInfo("lead name: " . $name . " was sent a mobile site is live");
@@ -30,7 +32,9 @@ function ServicesAreLiveEmails(&$bean)
 
     if ($bean->googlelocal_live_c == 1 && $bean->googlelocal_check_c == 1) {
 
-        $result = $api->get("/email/google-local-listing-live?email=" . $email);
+        $result = $api->get("/emails/google-local-listing/google-local-listing-live", array(
+            "email" => $email
+        ));
 
         if ($result == "OK") {
             $bean->googlelocal_live_assign_name_c = current_user();

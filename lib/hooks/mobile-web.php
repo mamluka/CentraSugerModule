@@ -14,7 +14,7 @@ function SendMobilePreviewEmail(&$bean)
         $email = $bean->email1;
         $mobile_preview_url = $bean->prev_url_c;
 
-        $result = $api->get("/email/mobile-site-preview", array(
+        $result = $api->get("/emails/mobile-web/mobile-web-preview", array(
             'email' => $email,
             'previewUrl' => $mobile_preview_url
         ));
