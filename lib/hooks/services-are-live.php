@@ -15,6 +15,8 @@ function ServicesAreLiveEmails(&$bean)
     $name = $bean->first_name;
 
     if ($bean->mobileweb_live_c == 1 && $bean->mobileweb_check_c == 1) {
+        $bean->mobileweb_live_assigner_c = current_user();
+        $bean->mobileweb_live_date_c = crm_date();
 
         $result = $soa->get("/emails/mobile-web/mobile-web-live", array(
             "email" => $email
