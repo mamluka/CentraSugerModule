@@ -3,8 +3,8 @@ require_once(__DIR__ . '/../core/core.php');
 
 function VerifiedLocalListingData(&$bean)
 {
-    $apiFactory = new EmailRestClient();
-    $api = $apiFactory->Get();
+    $soaFactory = new SoaRestClient();
+    $soa = $soaFactory->Get();
 
     $logger = new KLogger ("centra-logs", KLogger::DEBUG);
 
@@ -15,7 +15,7 @@ function VerifiedLocalListingData(&$bean)
 
     if ($bean->googlelocal_verified_c == 1 && $bean->googlelocal_check_c == 1 && $bean->googlelocal_verified_date_c == "") {
 
-        $result = $api->get("/emails/google-local-listing/google-local-listing-heads-up", array(
+        $result = $soa->get("/emails/google-local-listing/google-local-listing-heads-up", array(
             "email" => $email,
             "customerId" => $bean->id
         ));

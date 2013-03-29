@@ -50,7 +50,7 @@ function HandleNonBillable(&$bean)
         $bean->not_billable_assigner_c = $current_user->first_name . " " . $current_user->last_name;
         $bean->status = "Dead";
 
-        $result = $api->get("/emails/non-billable/not-the-right-person", array(
+        $result = $soa->get("/emails/non-billable/not-the-right-person", array(
             "email" => $email
         ));
 

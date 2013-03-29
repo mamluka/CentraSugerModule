@@ -3,8 +3,8 @@ require_once(__DIR__ . '/../core/core.php');
 
 function SendMobilePreviewEmail(&$bean)
 {
-    $apiFactory = new EmailRestClient();
-    $api = $apiFactory->Get();
+    $soaFactory = new SoaRestClient();
+    $soa = $soaFactory->Get();
 
     $notes = new NotesClient();
 
@@ -14,7 +14,7 @@ function SendMobilePreviewEmail(&$bean)
         $email = $bean->email1;
         $mobile_preview_url = $bean->prev_url_c;
 
-        $result = $api->get("/emails/mobile-web/mobile-web-preview", array(
+        $result = $soa->get("/emails/mobile-web/mobile-web-preview", array(
             'email' => $email,
             'previewUrl' => $mobile_preview_url
         ));

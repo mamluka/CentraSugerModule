@@ -7,8 +7,8 @@ function ServicesAreLiveEmails(&$bean)
 
     $logger = new KLogger ("centra-logs", KLogger::DEBUG);
 
-    $apiFactory = new EmailRestClient();
-    $api = $apiFactory->Get();
+    $soaFactory = new SoaRestClient();
+    $soa = $soaFactory->Get();
 
     $notes = new NotesClient();
 
@@ -16,7 +16,7 @@ function ServicesAreLiveEmails(&$bean)
 
     if ($bean->mobileweb_live_c == 1 && $bean->mobileweb_check_c == 1) {
 
-        $result = $api->get("/emails/mobile-web/mobile-web-live", array(
+        $result = $soa->get("/emails/mobile-web/mobile-web-live", array(
             "email" => $email
         ));
 
@@ -32,7 +32,7 @@ function ServicesAreLiveEmails(&$bean)
 
     if ($bean->googlelocal_live_c == 1 && $bean->googlelocal_check_c == 1) {
 
-        $result = $api->get("/emails/google-local-listing/google-local-listing-live", array(
+        $result = $soa->get("/emails/google-local-listing/google-local-listing-live", array(
             "email" => $email
         ));
 
