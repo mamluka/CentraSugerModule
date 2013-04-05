@@ -31,13 +31,9 @@ function ClientStatusChange(&$bean)
 
 function ChangeStatusToFollowUpIfAssginedAndSaved(&$bean)
 {
-    $logger = new KLogger ("centra-logs", KLogger::DEBUG);
-
     $noteClient = new NotesClient();
 
-    $logger->LogInfo($bean->fetched_row['status']);
-
-    if ($bean->retrieve($bean->status) == "Assigned") {
+    if ($bean->fetched_row['status'] == "Assigned") {
         $bean->status = 'FU';
         $noteClient->AddNote($bean->id, "Moved to Follow Up because edited by " . current_user());
     }
