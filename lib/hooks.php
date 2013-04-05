@@ -30,7 +30,8 @@ class CentraHooks
         HandleNonBillable($bean);
         ServicesAreLiveEmails($bean);
         VerifiedLocalListingData($bean);
-
+        ChangeStatusToFollowUpIfAssginedAndSaved($bean);
+        
         $_SESSION["already_run"] = true;
 
         $bean->save();
