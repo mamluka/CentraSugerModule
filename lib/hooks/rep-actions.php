@@ -29,6 +29,16 @@ function ClientStatusChange(&$bean)
     }
 }
 
+function ChangeStatusToFollowUpIfAssginedAndSaved(&$bean)
+{
+    $noteClient = new NotesClient();
+
+    if ($bean->retrieve($bean->status) == "Assigned") {
+        $bean->status = 'FU';
+        $noteClient->AddNote($bean->id, "Moved to Follow Up because edited by " . current_user());
+    }
+}
+
 function UpdateWhoCancelled(&$bean)
 {
     if ($bean->status == "cancelled" && $bean->cancelling_rep_c == "") {
