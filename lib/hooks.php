@@ -31,7 +31,7 @@ class CentraHooks
         ServicesAreLiveEmails($bean);
         VerifiedLocalListingData($bean);
         ChangeStatusToFollowUpIfAssginedAndSaved($bean);
-        
+
         $_SESSION["already_run"] = true;
 
         $bean->save();

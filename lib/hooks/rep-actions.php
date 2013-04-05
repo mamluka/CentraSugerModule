@@ -31,7 +31,11 @@ function ClientStatusChange(&$bean)
 
 function ChangeStatusToFollowUpIfAssginedAndSaved(&$bean)
 {
+    $logger = new KLogger ("centra-logs", KLogger::DEBUG);
+
     $noteClient = new NotesClient();
+
+    $logger->LogInfo($bean->retrieve($bean->status));
 
     if ($bean->retrieve($bean->status) == "Assigned") {
         $bean->status = 'FU';
