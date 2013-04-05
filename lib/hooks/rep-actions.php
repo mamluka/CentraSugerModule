@@ -35,7 +35,7 @@ function ChangeStatusToFollowUpIfAssginedAndSaved(&$bean)
 
     $noteClient = new NotesClient();
 
-    $logger->LogInfo($bean->retrieve($bean->status));
+    $logger->LogInfo($bean->fetched_row['status']);
 
     if ($bean->retrieve($bean->status) == "Assigned") {
         $bean->status = 'FU';
