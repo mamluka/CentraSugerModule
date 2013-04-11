@@ -25,12 +25,21 @@ $installdefs = array(
     'id' => 'CG_Centra',
     'mkdir' => array(
         array('path' => 'custom/modules/Centra'),
+        array('path' => 'custom/include/centra'),
     ),
     'copy' => array(
         array(
             'from' => '<basepath>/lib',
             'to' => 'custom/modules/Centra',
         ),
+        array(
+            'from' => '<basepath>/lib/js',
+            'to' => 'custom/include/centra/js',
+        ),
+        array(
+            'from' => '<basepath>/lib/css',
+            'to' => 'custom/include/centra/css',
+        )
     ),
     'logic_hooks' => array(
         array(
@@ -51,6 +60,15 @@ $installdefs = array(
             'class' => 'CentraHooks',
             'function' => 'AfterSave',
         ),
+        array(
+            'module' => 'Leads',
+            'hook' => 'after_ui_frame',
+            'order' => 1,
+            'description' => 'Creates pop-up dialog on save action.',
+            'file' => 'custom/modules/Centra/dashboard.php',
+            'class' => 'Notes',
+            'function' => 'AddNote'
+        )
     ),
 );
 

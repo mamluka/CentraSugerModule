@@ -17,6 +17,7 @@ class CentraHooks
         if (isset($_SESSION["already_run"]) && $_SESSION["already_run"] == true) {
             $logger->LogInfo("==========Hooks exited=================");
             $_SESSION["already_run"] = false;
+            $_SESSION["save_mode"] = true;
             return;
         }
 

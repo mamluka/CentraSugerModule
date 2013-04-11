@@ -1,4 +1,4 @@
 {
-    "CentraAppsApiBaseUrl":"http://apps.centracorporation.com/api",
-    "SoaApiBaseUrl":"http://soa.centracorporation.com/api"
+    "SoaApiBaseUrl": "http://localhost:9050/api",
+    "SoaBaseUrl": "http://localhost:9050"
 }

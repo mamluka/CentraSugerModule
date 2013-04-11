@@ -39,7 +39,7 @@ function UpdateSoldServicesDates(&$bean)
 
         $logger->LogInfo("The echosign API returned: " . $result);
 
-        if (strlen($result) == 14) {
+        if (strlen($result) == 16) {
             $bean->echosign_doc_id_c = $result;
             $logger->LogInfo("lead name:" . $name . " send echosign contract");
 
@@ -75,7 +75,7 @@ function UpdateSoldServicesDates(&$bean)
 
         $logger->LogInfo("The echosign API returned: " . $result);
 
-        if (strlen($result) == 14) {
+        if (strlen($result) == 16) {
             $bean->echosign_doc_id_c = $result;
             $logger->LogInfo("lead name:" . $name . " was sent a mobile web contract");
 
