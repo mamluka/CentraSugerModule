@@ -8,6 +8,7 @@ task :install do |task|
   `zsh -c 'zip -r package **/*.php'`
   `zsh -c 'zip -ru package **/*.js'`
   `zsh -c 'zip -ru package **/*.css'`
+  `zsh -c 'zip -ru package **/*.png'`
   `zsh -c 'zip -ru package **/*.json'`
 
   config_file = File.dirname(__FILE__) + '/config-crm.json'
@@ -32,13 +33,6 @@ task :install do |task|
 
   @driver.link(:text => 'Admin').when_present.click
   @driver.link(:text => 'Module Loader').when_present.click
-  if @driver.execute_script("return $('#installed_grid:contains(Centra Module)').length > 0;")
-    puts "Uninstalling current version"
-
-    @driver.execute_script("$('tr.yui-dt-rec:contains(Centra Module)').find('input[value=Uninstall]').click()")
-    @driver.button(:value => 'Commit').when_present.click
-    @driver.button(:value => 'Back to Module Loader').when_present.click
-  end
 
   puts "Uploading file.."
 

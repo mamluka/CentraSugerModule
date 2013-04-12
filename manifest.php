@@ -33,12 +33,16 @@ $installdefs = array(
             'to' => 'custom/modules/Centra',
         ),
         array(
-            'from' => '<basepath>/lib/js',
+            'from' => '<basepath>/lib/static/js',
             'to' => 'custom/include/centra/js',
         ),
         array(
-            'from' => '<basepath>/lib/css',
+            'from' => '<basepath>/lib/static/css',
             'to' => 'custom/include/centra/css',
+        ),
+        array(
+            'from' => '<basepath>/lib/static/images',
+            'to' => 'custom/include/centra/images',
         )
     ),
     'logic_hooks' => array(

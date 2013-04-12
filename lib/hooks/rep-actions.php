@@ -33,7 +33,10 @@ function ChangeStatusToFollowUpIfAssginedAndSaved(&$bean)
 {
     $noteClient = new NotesClient();
 
-    if ($bean->fetched_row['status'] == "Assigned") {
+    $lead = new Lead();
+    $lead->retrieve($bean->id);
+
+    if ($lead->status == "Assigned") {
         $bean->status = 'FU';
         $noteClient->AddNote($bean->id, "Moved to Follow Up because edited by " . current_user());
     }

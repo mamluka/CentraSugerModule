@@ -20,12 +20,17 @@ class Notes
 
         }
 
-        if ($_REQUEST['action'] == 'EditView' || $_REQUEST['action'] == 'DetailView') {
+        if (($_REQUEST['action'] == 'EditView' && isset($_REQUEST['record'])) || $_REQUEST['action'] == 'DetailView') {
+            echo '<script type="text/javascript" src="custom/include/centra/js/jquery.msgbox.js"></script>';
             echo '<script type="text/javascript" src="custom/include/centra/js/centra.js?' . rand(555511, 99879) . '"></script>';
-            echo '<script type="text/javascript" src="https://raw.github.com/daepark/postmessage/master/postmessage.js"></script>';
-            echo '<link rel="stylesheet" type="text/css" href="custom/include/centra/css/centra.css?' . rand(555511, 99879) . '">';
 
-            echo '<div id="crmTools" data-base-url="' . $config->SoaBaseUrl . '" data-record="' . $_REQUEST['record'] . '"></div>';
+            echo '<link rel="stylesheet" type="text/css" href="custom/include/centra/css/centra.css?' . rand(555511, 99879) . '">';
+            echo '<link rel="stylesheet" type="text/css" href="custom/include/centra/css/msgbox-light.css">';
+
+            echo '<script type="text/javascript" src="https://raw.github.com/daepark/postmessage/master/postmessage.js"></script>';
+
+            $record = $_REQUEST['record'];
+            echo '<div id="crmTools" data-base-url="' . $config->SoaBaseUrl . '" data-record="' . $record . '"></div>';
         }
 
         $_SESSION["save_mode"] = false;

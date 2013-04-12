@@ -8,6 +8,7 @@ class CentraHooks
     function BeforeSave(&$bean, $event, $arguments)
     {
         ValidateStatuses($bean);
+        ChangeStatusToFollowUpIfAssginedAndSaved($bean);
     }
 
     function AfterSave(&$bean, $event, $arguments)
@@ -31,7 +32,6 @@ class CentraHooks
         HandleNonBillable($bean);
         ServicesAreLiveEmails($bean);
         VerifiedLocalListingData($bean);
-        ChangeStatusToFollowUpIfAssginedAndSaved($bean);
 
         $_SESSION["already_run"] = true;
 

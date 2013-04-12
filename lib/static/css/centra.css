@@ -2,3 +2,7 @@
     font-size: 1.6em;
     padding: 10px;
 }
+
+.noclose .ui-dialog-titlebar-close {
+    display: none;
+}
