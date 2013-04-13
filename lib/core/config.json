@@ -1,4 +1,4 @@
 {
-    "SoaApiBaseUrl": "http://localhost:9050/api",
-    "SoaBaseUrl": "http://localhost:9050"
+    "SoaApiBaseUrl": "http://soa.centracorporation.com/api",
+    "SoaBaseUrl": "http://soa.centracorporation.com"
 }
