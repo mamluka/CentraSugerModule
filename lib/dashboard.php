@@ -27,7 +27,7 @@ class Notes
             echo '<link rel="stylesheet" type="text/css" href="custom/include/centra/css/centra.css?' . rand(555511, 99879) . '">';
             echo '<link rel="stylesheet" type="text/css" href="custom/include/centra/css/msgbox-light.css">';
 
-            echo '<script type="text/javascript" src="https://raw.github.com/daepark/postmessage/master/postmessage.js"></script>';
+            echo '<script type="text/javascript" src="custom/include/centra/js/postmessage.js"></script>';
 
             $record = $_REQUEST['record'];
             echo '<div id="crmTools" data-base-url="' . $config->SoaBaseUrl . '" data-record="' . $record . '"></div>';
